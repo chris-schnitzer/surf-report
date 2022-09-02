@@ -1,0 +1,4 @@
+var config = {
+	ACCU_KEY : "09EcYCSFObX0RZVLdJ72p3r7Vmb60AQmJV",
+	MSW_KEY : "6r25hUV2gzFO64v9WKj341sn4ODm996C"
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+
+
+
+  <div id="container">
+            
+    <section id="headings">
+        <h1>Crantock</h1>
+        <p id="date" class="spacing"></p>
+    </section>
+
+    <section id="weather">
+
+      <div id="weather_icons">
+        <img id="weather_icons_img" src="img/icon_partly_cloudy.png" />      
+      </div>
+      <div id="temps">
+        <div id="temps_inner">
+          <div id="current_temp">
+            <p>Current</p>
+            <p id="current" class="large_text"></p> 
+          </div>
+                
+          <div id="low_high">
+            <p>Low<br /><span id="low_temp" class="med_text"></span></p>
+            <p>High<br /><span id ="high_temp" class="med_text"></span></p>
+          </div>
+        </div>
+      </div>
+            
+      <div class="clear" id="uv">
+        <p id ="uv">UV Index:</p> 
+      </div>
+    </section>
+        
+    <section id="surf">
+      <div id ="wave_height">
+        <p id="wave_height_text" class="large_text"></p>
+      </div>
+            
+      <div id="wind">
+        <p id="wind_dir"></p>
+        <P id="wind_speed"></P>
+      </div>
+            
+      <div id="tides"class="clear">
+        <table>
+          <tr>
+            <td><p id="high_one">High:</p></td>
+            <td><p id="low_one" class="shift">Low:</p></td>
+          </tr>
+          <tr>
+            <td><p id="high_two">High:</p></td>
+            <td><p id="low_two" class="shift">Low: </p></td>  
+          </tr>
+        </table>   
+      </div>
+            
+      <div id="surf_icon" class="clear">
+     
+      </div>      
+    </section>
+        
+    <section id="sunsets" class="clear">
+      <table>
+        <tr>
+          <td><p id="sunrise"></p></td>
+        </tr>
+        <tr>
+          <td><p id="sunset"></p></td>
+        </tr> 
+      </table>
+    </section>
+  </div>
+        
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/tide_data.js"></script>
+  <script type="text/javascript" src="config.js"></script>
+  <script src="js/main_v2.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>
