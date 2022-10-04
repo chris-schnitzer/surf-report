@@ -390,7 +390,7 @@ xhrThree.onreadystatechange = function() {
 	}
 };
 
-xhrThree.open('GET', 'https://magicseaweed.com/api/'+mswkey+'/forecast/?spot_id=1363&units=uk', true);
+xhrThree.open('GET', 'https://cors-anywhere.herokuapp.com/https://magicseaweed.com/api/'+mswkey+'/forecast/?spot_id=1363&units=uk', true);
 //http://magicseaweed.com/api/YOURAPIKEY/forecast/?spot_id=10&fields=timestamp,wind.*,condition.temperature
 xhrThree.send(null);
 
