@@ -154,151 +154,45 @@ function iconNum() {
 	}	
 }
 
+//Hardcoded surfconditions
+var el = document.getElementById("wave_height_text");
+el.innerHTML = ("4ft");
+
+var el = document.getElementById("wind_speed");
+el.innerHTML = ("4mph");
+
+
+var el = document.getElementById("wind_dir");
+el.innerHTML = ("offshore");
+
+urlArr = [
+		"img/clean_icon.png",
+		"img/average_icon.png",
+		"img/choppy_icon.png"	
+];
+
+var myDiv = document.getElementById("surf_icon");
+var icon = document.createElement("img");
+icon.src = urlArr[1];
+myDiv.appendChild(icon);
+
+var el = document.getElementById("high_one");
+el.innerHTML = ( "High: 5:10AM");
+
+var el = document.getElementById("high_two");
+el.innerHTML = ("High: 5:23PM");
+
+var el = document.getElementById("low_one");
+el.innerHTML = ("Low: 11:27AM" );
+
+var el = document.getElementById("low_two");
+el.innerHTML = ("Low: 11:49PM");
+
 
 //GET CURRENT TIME
 //GLOBAL VAR TO WORK WITH SURFCOND(), GETTIDES() AND SUNSETTIMES()
 var time = new Date();
 time = Math.round(time.getTime() / 1000);
-
-function surfCond() {
-	//ICON IMAGES
-	urlArr = [
-		"img/clean_icon.png",
-		"img/average_icon.png",
-		"img/choppy_icon.png"	
-	];
-
-    var myDiv = document.getElementById("surf_icon");
-	var icon = document.createElement("img");
-	
-	// WIND DATA
-    var obj  = responseObject;
-
-	for(var i = 0; i < obj.length; i++) {
-		//get localtimestampstimestamps
-        var localTimes = obj[i].localTimestamp;
-         //check local time matches with current time
-        if((time >= localTimes) && (time < (localTimes + 10800))) {
-            var minWave = obj[i].swell.minBreakingHeight;
-            //wave height
-            var maxWave = obj[i].swell.maxBreakingHeight;
-            var avg = Math.round((minWave + maxWave) / 2);
-            
-            var el = document.getElementById("wave_height_text");
-            el.innerHTML = (avg + "ft");
-
-            //wind speed
-            var speed = obj[i].wind.speed;
-            var el = document.getElementById("wind_speed");
-            el.innerHTML = (speed + "mph");
-
-            //wind direction
-            var dir = obj[i].wind.compassDirection;
-            
-            //The wind direction in surfing terms & breakdown of conditions
-            //CROSS-ONSHORE
-            if(dir.match(/^(N|WSW)$/)) {
-                dir = "Cross - Onshore";
-                if(speed <= 5) {
-                	icon.src = urlArr[0];
-                } else if ((speed > 5) && (speed <= 12)) {
-                	icon.src = urlArr[1];
-                } else {
-                	icon.src = urlArr[2];
-                }
-            //CROSS - SHORE
-            } else if (dir.match(/^(NNE|SSW|SW)$/)) {
-                dir = "Cross-shore";
-                if(speed <= 8) {
-                	icon.src = urlArr[0];
-                } else if((speed > 8) && (speed <= 15)) {
-                	icon.src = urlArr[1];
-                } else {
-                	icon.src = urlArr[2]; 	
-                }
-            //CROSS - OFFSHORE
-            } else if (dir.match(/^(ENE|S)$/)) {
-                dir = "Cross - Offshore";
-                if(speed <= 10) {
-                	icon.src = urlArr[0];
-                } else if((speed > 10) &&(speed <= 15)) {
-                	icon.src = urlArr[1];
-                } else {
-	               	icon.src = urlArr[2];
-                }
-            //OFFSHORE
-            } else if(dir.match(/^(E|ESE|SE|SSE|NE)$/)) {
-                dir = "Offshore";
-                if(speed <= 20) {
-                	icon.src = urlArr[0];
-                } else if((speed > 20) && (speed <= 35)) {
-                	icon.src = urlArr[1];
-                } else {
-                	icon.src = urlArr[2];
-                }
-            //ONSHORE
-            } else if (dir.match(/^(W|WNW|NW|NNW)$/)) {
-                dir = "Onshore";
-                if(speed <= 5){
-                	icon.src = urlArr[0];
-                }else if((speed > 5) && (speed <= 12)) {
-                	icon.src = urlArr[1];
-                } else {
-                	icon.src = urlArr[2];
-                }
-            }
-
-            //INSERT ICON
-            myDiv.appendChild(icon);
-
-            var el = document.getElementById("wind_dir");
-            el.innerHTML = (dir);
-
-            //if(direct = "Cross - Onshore" && speed < 12){
-            //	alert("cross-onshore and average");
-            //}
-
-            break;
-        }
-        
-    } 
-}
-
-function getTides() {
-	//loop through object
-	for(var i = 0; i < tides.length; i++) {
-		var d = tides[i].date;
-		var highOne = tides[i].highFirst;
-		var highTwo = tides[i].highSec;
-		var lowOne = tides[i].lowFirst;
-		var lowTwo = tides[i].lowSec;
-
-		//match today with appropriate day
-		if((time >= d) && (time < d + 86400)) {
-			var arr = [];
-			arr.push(highOne, highTwo, lowOne, lowTwo);
-
-			arr.forEach(function(element) {
-		})
-
-		var el = document.getElementById("high_one");
-        el.innerHTML = ( "High: " + highOne);
-
-        var el = document.getElementById("high_two");
-        el.innerHTML = ("High: " + highTwo);
-
-        var el = document.getElementById("low_one");
-        el.innerHTML = ("Low: " + lowOne);
-
-        var el = document.getElementById("low_two");
-        el.innerHTML = ("Low: " + lowTwo);
-
-		break;
-		}
-	}	
-}
-
-getTides();
 
 function sunsetTimes() {
 	var sunTime =  (responseObject["DailyForecasts"][0]["Sun"]);
@@ -326,24 +220,6 @@ function sunsetTimes() {
   	el.innerHTML = ("Sunset: " + sunsetHr+ " " + sunsetMn);     	
 }
 
-
-// code to allow cross domain requests 
-// (function() {
-//     var cors_api_host = 'cors-anywhere.herokuapp.com';
-//     var cors_api_url = 'https://' + cors_api_host + '/';
-//     var slice = [].slice;
-//     var origin = window.location.protocol + '//' + window.location.host;
-//     var open = XMLHttpRequest.prototype.open;
-//     XMLHttpRequest.prototype.open = function() {
-//         var args = slice.call(arguments);
-//         var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-//         if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
-//             targetOrigin[1] !== cors_api_host) {
-//             args[1] = cors_api_url + args[1];
-//         }
-//         return open.apply(this, args);
-//     };
-// })();
 
 var accukey = config.ACCU_KEY;
 var mswkey = config.MSW_KEY;
@@ -380,19 +256,7 @@ xhrTwo.open('GET', 'http://dataservice.accuweather.com/forecasts/v1/daily/1day/5
 xhrTwo.send(null);
 
 
-var xhrThree = new XMLHttpRequest(); //create rquest object
 
-xhrThree.onreadystatechange = function() {
-	if(this.readyState == 4 && this.status == 200) { //if server status iisok
-		responseObject = JSON.parse(xhrThree.responseText);
-		surfCond();
-		
-	}
-};
-
-xhrThree.open('GET', 'https://cors-anywhere.herokuapp.com/https://magicseaweed.com/api/'+mswkey+'/forecast/?spot_id=1363&units=uk', true);
-//http://magicseaweed.com/api/YOURAPIKEY/forecast/?spot_id=10&fields=timestamp,wind.*,condition.temperature
-xhrThree.send(null);
 
 
 
